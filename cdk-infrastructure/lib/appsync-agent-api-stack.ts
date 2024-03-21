@@ -16,7 +16,7 @@ export class AppsyncAgentAPIStack extends cdk.Stack {
         // Next we will build a "agent api", this api manages the actual communication with the agents
         // and the invocation of agent handlers that is where custom LLM business logic lives
         // Inside we define resolvers to handle this interaction
-        const agentApi = buildAgentApi(this, { cognito, tables, enableConstructingAgents: false })
+        const agentApi = buildAgentApi(this, { cognito, tables, enableConstructingAgents: true })
         
         // We also build some example graphql apis that help facilitate the playground experience
         const carDealerExample = buildCarDealerApi(this, { cognito })
