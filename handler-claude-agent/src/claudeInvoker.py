@@ -21,4 +21,6 @@ def claude_bedrock (prompt, stopWords = []):
     raw_body = response['body'].read().decode("utf-8")
     response_json = json.loads(raw_body)
     
+    print(([*response_json.values()][0]))
+    
     return (([*response_json.values()][0]))
