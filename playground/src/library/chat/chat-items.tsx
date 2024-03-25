@@ -97,8 +97,9 @@ export function AgentJSONBlock (props: ChatItemProps) {
     //         return null;
     //     }
     // };
-    
 
+
+    
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
             <View lineHeight={2}>
