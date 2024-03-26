@@ -7,6 +7,7 @@ import {  Flex, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
+import fs from 'fs';
 
 function EnterUserSection () {
     const { tokens } = useTheme();
@@ -107,10 +108,12 @@ export function ChatRendered () {
                                 key={event.id + index}
                             />
                         )
+                        console.log(part)
                         localLastEffectTime += part.length * 5
                         messageSize += part.length
                     }
                     else {
+                        // fs.writeFileSync('props_text.html', part)
                         renderedChat.push(
                             <AgentJSONBlock 
                                 text={part}
