@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script> 
+</head>
+
+<body>
+  <canvas id="myChart"></canvas>
+
+  <script>
+    // Flight data
+    const data = {
+      labels: ['Terminal 1', 'Terminal 2', 'Terminal 3', 'Terminal 4'],
+      datasets: [{
+        label: 'Flights per Terminal',
+        data: [27, 22, 31, 20],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)'
+        ]
+      }]  
+    };
+    
+    // Chart config
+    const config = {
+      type: 'bar',
+      data: data,
+      options: {}
+    };
+    
+    // Render chart
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  </script>
+
+</body>
+</html>
