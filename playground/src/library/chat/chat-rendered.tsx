@@ -96,8 +96,7 @@ export function ChatRendered () {
 
             if (event.event.message) {
                 // split on ``` for rendering blobs
-                let parts = event.event.message.split('```')
-                console.log(parts)
+                let parts = event.event.message.split('```')             
                 let localLastEffectTime = lastEffectEndTime
                 parts.forEach((part: string, index: number) => {
                     if (index % 2 === 0) {
@@ -115,7 +114,14 @@ export function ChatRendered () {
                     }
                     else {
                         // fs.writeFileSync('props_text.html', part)
-
+                        console.log(part)
+                        fetch('/save-data', {
+                            method: 'POST',
+                            headers: {
+                              'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ data: part }),
+                        })
 
                         renderedChat.push(
                             <AgentJSONBlock 
