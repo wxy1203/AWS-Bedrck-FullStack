@@ -157,6 +157,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2} padding={theme.tokens.space.medium}> 
+        我是agent inner dialog
             <Text>
                 . . .
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>       
@@ -168,6 +169,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 export function AgentWarningBlock (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>   
+        我是agent warning   
             <Alert variation='warning' fontSize='smaller'>
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>
             </Alert>
