@@ -1,7 +1,6 @@
 import { View, Card, Alert, Text, useTheme, Flex, Heading, Button } from "@aws-amplify/ui-react"
 import { ConversationEvent } from "../../apis/agent-api/types"
 import { TypingEffect } from "../typeEffect"
-import fs from 'fs'
 
 interface ChatItemProps {
     text: string
