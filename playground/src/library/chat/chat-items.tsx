@@ -1,6 +1,7 @@
 import { View, Card, Alert, Text, useTheme, Flex, Heading, Button } from "@aws-amplify/ui-react"
 import { ConversationEvent } from "../../apis/agent-api/types"
 import { TypingEffect } from "../typeEffect"
+import fs from 'fs'
 
 interface ChatItemProps {
     text: string
@@ -80,6 +81,8 @@ function tryFixJsonString (render: string){
 }
 
 export function AgentJSONBlock (props: ChatItemProps) {
+    
+    
 
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
@@ -97,7 +100,15 @@ export function AgentJSONBlock (props: ChatItemProps) {
                 </Text>
                 {/* Assuming props.text contains the code */}
                 {/* {executeCode(props.text)} */}
-                {props.text}
+                {/* <Button onClick={() => Linking.openURL('https://www.example.com')}>
+                    <Text style={{color: 'blue'}}>
+                        Click here
+                    </Text>
+                </Button> */}
+                <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
+                    <iframe src="/bar_chart.html" title="Result" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+                </div>      
+                {/* {props.text} */}
             </View>
         </View>
     );
