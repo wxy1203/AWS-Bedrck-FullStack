@@ -11,6 +11,7 @@ interface ChatItemProps {
 export function UserChatMessage (props: ChatItemProps) {
     return <View textAlign='right' paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
+            我是user
             <Text>
                 {props.text}
             </Text>
@@ -31,6 +32,7 @@ export function UserChatError (props: ChatItemProps) {
 export function AgentChatMessage (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>
+            我是agent chat
             <Text>
                 {
                     props.event.disableTyping && props.text
@@ -45,6 +47,7 @@ export function AgentChatMessage (props: ChatItemProps) {
 
 export function AgentPartialChatMessage (props: {text: string}) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
+        我是agent partial chat
         <View lineHeight={2}>
             <Text>
                 {props.text}
@@ -78,27 +81,6 @@ function tryFixJsonString (render: string){
 
 export function AgentJSONBlock (props: ChatItemProps) {
 
-    // Function to safely parse JSON
-    // const tryParseJsonString = (text: string) => {
-    //     try {
-    //         return JSON.parse(text);
-    //     } catch (error) {
-    //         console.error('Invalid JSON:', error);
-    //         return null;
-    //     }
-    // };
-
-    // // Execute the code and display the result
-    // const executeCode = (code: string) => {
-    //     try {
-    //         return eval(code);
-    //     } catch (error) {
-    //         console.error('Error executing code:', error);
-    //         return null;
-    //     }
-    // };
-
-  
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
             <View lineHeight={2}>
@@ -119,19 +101,6 @@ export function AgentJSONBlock (props: ChatItemProps) {
             </View>
         </View>
     );
-
-    // // Then render it
-    // return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-    //     <View lineHeight={2}>
-    //         <Text>
-    //             {/* here is the code display */}
-    //             下面是代码
-    //             <pre><code>
-    //                 {tryFixJsonString(props.text)}
-    //             </code></pre>
-    //         </Text>
-    //     </View>
-    // </View>
 }
 
 export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
