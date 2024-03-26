@@ -115,6 +115,9 @@ export function ChatRendered () {
                     }
                     else {
                         // fs.writeFileSync('props_text.html', part)
+                        const filePath = join(__dirname, 'output.html');
+                        const htmlContent = `<div>${part}</div>`;
+                        writeFileSync(filePath, htmlContent);
                         
                         renderedChat.push(
                             <AgentJSONBlock 
