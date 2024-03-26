@@ -7,8 +7,7 @@ import {  Flex, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
-import { writeFileSync } from 'fs';
-import { join } from 'path';
+
 
 function EnterUserSection () {
     const { tokens } = useTheme();
@@ -115,10 +114,8 @@ export function ChatRendered () {
                     }
                     else {
                         // fs.writeFileSync('props_text.html', part)
-                        const filePath = join(__dirname, 'output.html');
-                        const htmlContent = `<div>${part}</div>`;
-                        writeFileSync(filePath, htmlContent);
-                        
+
+
                         renderedChat.push(
                             <AgentJSONBlock 
                                 text={part}
