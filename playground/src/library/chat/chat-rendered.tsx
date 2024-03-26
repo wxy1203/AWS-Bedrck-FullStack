@@ -108,12 +108,13 @@ export function ChatRendered () {
                                 key={event.id + index}
                             />
                         )
-                        console.log(part)
+                        
                         localLastEffectTime += part.length * 5
                         messageSize += part.length
                     }
                     else {
                         // fs.writeFileSync('props_text.html', part)
+                        console.log(part)
                         renderedChat.push(
                             <AgentJSONBlock 
                                 text={part}
