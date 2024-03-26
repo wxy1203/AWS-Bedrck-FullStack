@@ -2,6 +2,7 @@ import { View, Card, Alert, Text, useTheme, Flex, Heading, Button } from "@aws-a
 import { ConversationEvent } from "../../apis/agent-api/types"
 import { TypingEffect } from "../typeEffect"
 
+
 interface ChatItemProps {
     text: string
     event: ConversationEvent
