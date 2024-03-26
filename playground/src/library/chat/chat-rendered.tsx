@@ -113,7 +113,7 @@ export function ChatRendered () {
                         messageSize += part.length
                     }
                     else {
-                        fs.writeFileSync('props_text.html', part)
+                        // fs.writeFileSync('props_text.html', part)
                         //console.log(part)
 
                         // fetch('/save-data', {
