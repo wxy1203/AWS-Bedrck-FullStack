@@ -7,7 +7,8 @@ import {  Flex, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
-import fs from 'fs';
+import { writeFileSync } from 'fs';
+
 
 function EnterUserSection () {
     const { tokens } = useTheme();
@@ -96,6 +97,7 @@ export function ChatRendered () {
 
             if (event.event.message) {
                 // split on ``` for rendering blobs
+                // console.log(event.event.message)
                 let parts = event.event.message.split('```')             
                 let localLastEffectTime = lastEffectEndTime
                 parts.forEach((part: string, index: number) => {
@@ -113,8 +115,8 @@ export function ChatRendered () {
                         messageSize += part.length
                     }
                     else {
-                        // fs.writeFileSync('props_text.html', part)
-                        //console.log(part)
+                        //writeFileSync('props_text.html', part)
+                        console.log(part)
 
                         // fetch('/save-data', {
                         //     method: 'POST',
@@ -125,6 +127,7 @@ export function ChatRendered () {
                         // })
 
                         renderedChat.push(
+
                             <AgentJSONBlock 
                                 text={part}
                                 event={event} 
