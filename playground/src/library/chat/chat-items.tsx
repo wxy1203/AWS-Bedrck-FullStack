@@ -1,7 +1,8 @@
 import { View, Card, Alert, Text, useTheme, Flex, Heading, Button } from "@aws-amplify/ui-react"
 import { ConversationEvent } from "../../apis/agent-api/types"
 import { TypingEffect } from "../typeEffect"
-
+import { createBarChart } from './chart'
+import React, { useRef, useEffect } from 'react';
 
 interface ChatItemProps {
     text: string
@@ -12,7 +13,7 @@ interface ChatItemProps {
 export function UserChatMessage (props: ChatItemProps) {
     return <View textAlign='right' paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
-            我是user
+            {/* 我是user */}
             <Text>
                 {props.text}
             </Text>
@@ -33,7 +34,7 @@ export function UserChatError (props: ChatItemProps) {
 export function AgentChatMessage (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>
-            我是agent chat
+            {/* 我是agent chat */}
             <Text>
                 {
                     props.event.disableTyping && props.text
@@ -48,7 +49,7 @@ export function AgentChatMessage (props: ChatItemProps) {
 
 export function AgentPartialChatMessage (props: {text: string}) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-        我是agent partial chat
+        {/* 我是agent partial chat */}
         <View lineHeight={2}>
             <Text>
                 {props.text}
@@ -80,15 +81,27 @@ function tryFixJsonString (render: string){
     return render;
 }
 
+
+function MyComponent() {
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        if (canvasRef.current) {
+        const chart = createBarChart(canvasRef.current);
+        // Save the chart instance if you need to use it later
+        }
+    }, []);
+
+    return <canvas ref={canvasRef} />;
+}
+
 export function AgentJSONBlock (props: ChatItemProps) {
     
-    
-
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
             <View lineHeight={2}>
                 <Text>
-                    下面是代码
+                    {/* 下面是代码 */}
                 </Text>
                 <pre><code>
                     {props.text}
@@ -96,8 +109,11 @@ export function AgentJSONBlock (props: ChatItemProps) {
             </View>
             <View>
                 <Text>
-                    下面是代码执行结果
+                    {/* 下面是代码执行结果 */}
                 </Text>
+                
+                <MyComponent />
+
                 {/* Assuming props.text contains the code */}
                 {/* {executeCode(props.text)} */}
                 {/* <Button onClick={() => Linking.openURL('https://www.example.com')}>
@@ -145,11 +161,16 @@ export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) 
 
 export function GraphQLResultBlock (props: ChatItemProps) {    
     return <View textAlign='left' paddingLeft={20} paddingRight={20}> 
-    下面是query result
+    {/* 下面是query result */}
         <View lineHeight={2}>
             <Card paddingLeft={10} className="codeBoxHeader">
                 <Heading>
                     Query Result
+                </Heading>
+                <Heading>
+                    <Button className="invokeButton">
+                        Click To Invoke
+                    </Button>
                 </Heading>
             </Card>
             <pre >
@@ -168,7 +189,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2} padding={theme.tokens.space.medium}> 
-        我是agent inner dialog
+        {/* 我是agent inner dialog */}
             <Text>
                 . . .
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>       
@@ -180,7 +201,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 export function AgentWarningBlock (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>   
-        我是agent warning   
+        {/* 我是agent warning    */}
             <Alert variation='warning' fontSize='smaller'>
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>
             </Alert>
