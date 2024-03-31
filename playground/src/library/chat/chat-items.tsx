@@ -13,8 +13,8 @@ interface ChatItemProps {
 export function UserChatMessage (props: ChatItemProps) {
     return <View textAlign='right' paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
-            {/* 我是user */}
             <Text>
+                {/* 用户消息 */}
                 {props.text}
             </Text>
         </Card>
@@ -59,131 +59,6 @@ export function AgentPartialChatMessage (props: {text: string}) {
     </View>
 }
 
-function tryFixJsonString (render: string){
-
-    // Some general parsing as the agent often gives results in wildly different formats
-    if (render.startsWith('"') && render.endsWith('"')) {
-        render = render.substring(1, render.length - 1).replaceAll('\\n', '\n')
-    }
-    if (render.startsWith('json')) {
-        render = render.substring(4)
-    }
-    try {
-        render = JSON.stringify(JSON.parse(render), null, 2)
-    }
-    catch (e) {
-        try {
-            render = JSON.stringify(JSON.parse(render.replaceAll('\'', '"')), null, 2)
-        }
-        catch (e) {}
-    }
-
-    return render;
-}
-
-
-function MyComponent() {
-    const canvasRef = useRef(null);
-
-    useEffect(() => {
-        if (canvasRef.current) {
-        const chart = createBarChart(canvasRef.current);
-        // Save the chart instance if you need to use it later
-        }
-    }, []);
-
-    return <canvas ref={canvasRef} />;
-}
-
-export function AgentJSONBlock (props: ChatItemProps) {
-    
-    return (
-        <View textAlign='left' paddingLeft={20} paddingRight={20}>
-            <View lineHeight={2}>
-                <Text>
-                    {/* 下面是代码 */}
-                </Text>
-                <pre><code>
-                    {props.text}
-                </code></pre>
-            </View>
-            <View>
-                <Text>
-                    {/* 下面是代码执行结果 */}
-                </Text>
-                
-                <MyComponent />
-
-                {/* Assuming props.text contains the code */}
-                {/* {executeCode(props.text)} */}
-                {/* <Button onClick={() => Linking.openURL('https://www.example.com')}>
-                    <Text style={{color: 'blue'}}>
-                        Click here
-                    </Text>
-                </Button> */}
-                <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
-                    <iframe src="/bar_chart.html" title="Result" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
-                </div>      
-                {/* {props.text} */}
-            </View>
-        </View>
-    );
-}
-
-export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
-    
-    return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-    下面是Query
-        <View lineHeight={2}>
-            <Card paddingLeft={10} className="codeBoxHeader">
-                <Flex direction='row' justifyContent='space-between'>
-
-                    <Heading>
-                        GraphQL Query
-                    </Heading>
-                    <Heading>
-                        <Button className="invokeButton" onClick={props.invoke}>
-                            Click To Invoke
-                        </Button>
-                    </Heading>
-                </Flex>
-            </Card>
-            <pre>
-                <code>
-                    <Text>
-                        {props.text}
-                    </Text>
-                </code>
-            </pre>
-        </View>
-    </View>
-}
-
-export function GraphQLResultBlock (props: ChatItemProps) {    
-    return <View textAlign='left' paddingLeft={20} paddingRight={20}> 
-    {/* 下面是query result */}
-        <View lineHeight={2}>
-            <Card paddingLeft={10} className="codeBoxHeader">
-                <Heading>
-                    Query Result
-                </Heading>
-                <Heading>
-                    <Button className="invokeButton">
-                        Click To Invoke
-                    </Button>
-                </Heading>
-            </Card>
-            <pre >
-                <code>
-                    <Text>
-                        {tryFixJsonString(props.text)}
-                    </Text>
-                </code>
-            </pre>
-        </View>
-    </View>
-}
-
 export function AgentInnerDialogBlock (props: ChatItemProps) {
     const theme = useTheme()
 
@@ -207,4 +82,146 @@ export function AgentWarningBlock (props: ChatItemProps) {
             </Alert>
         </View>
     </View>
+}
+
+function tryFixJsonString (render: string){
+
+    // Some general parsing as the agent often gives results in wildly different formats
+    if (render.startsWith('"') && render.endsWith('"')) {
+        render = render.substring(1, render.length - 1).replaceAll('\\n', '\n')
+    }
+    if (render.startsWith('json')) {
+        render = render.substring(4)
+    }
+    try {
+        render = JSON.stringify(JSON.parse(render), null, 2)
+    }
+    catch (e) {
+        try {
+            render = JSON.stringify(JSON.parse(render.replaceAll('\'', '"')), null, 2)
+        }
+        catch (e) {}
+    }
+
+    return render;
+}
+
+
+// Graph QL Query
+export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
+    
+    return <View textAlign='left' paddingLeft={20} paddingRight={20}>
+    下面是Query
+        <View lineHeight={2}>
+            <Card paddingLeft={10} className="codeBoxHeader">
+                <Flex direction='row' justifyContent='space-between'>
+
+                    <Heading>
+                        GraphQL Query
+                    </Heading>
+                    {/* 下面是invoke button */}
+                    <Heading>
+                        <Button className="invokeButton" onClick={props.invoke}>
+                            Click To Invoke
+                        </Button>
+                    </Heading>
+                </Flex>
+            </Card>
+            <pre>
+                <code>
+                    <Text>
+                        {props.text}
+                    </Text>
+                </code>
+            </pre>
+        </View>
+    </View>
+}
+
+
+// Graph Query结果
+export function GraphQLResultBlock (props: ChatItemProps) {    
+    return <View textAlign='left' paddingLeft={20} paddingRight={20}> 
+    {/* 下面是query result */}
+        <View lineHeight={2}>
+            <Card paddingLeft={10} className="codeBoxHeader">
+                <Heading>
+                    Query Result
+                </Heading>
+                {/* 下面是draw button */}
+                {/* <Heading>
+                    <Button className="invokeButton">
+                        Click To Draw Chart
+                    </Button>
+                </Heading> */}
+            </Card>
+            <pre >
+                <code>
+                    <Text>
+                        {tryFixJsonString(props.text)}
+                    </Text>
+                </code>
+            </pre>
+        </View>
+    </View>
+}
+
+// 用Json画图
+function JsonDraw() {
+    
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        if (canvasRef.current) {
+        createBarChart(canvasRef.current);
+        // Save the chart instance if you need to use it later
+        }
+    }, []);
+
+    return <canvas ref={canvasRef} />;
+}
+
+// 代码 和 代码执行结果
+export function AgentJSONBlock (props: ChatItemProps) {
+    return (
+        <View textAlign='left' paddingLeft={20} paddingRight={20}>
+            
+            <View lineHeight={2}>
+                <Card paddingLeft={10} className="codeBoxHeader">
+                    <Heading>
+                        Code
+                    </Heading>
+                    {/* 下面是draw button */}
+                    <Heading>
+                        <Button className="invokeButton">
+                            Click To Draw Chart
+                        </Button>
+                    </Heading>
+                </Card>
+                
+                {/* 下面是代码 */}
+                <pre><code>
+                    {props.text}
+                </code></pre>
+            </View>
+
+            <View>
+                <Card paddingLeft={10} className="codeBoxHeader">
+                    <Heading>
+                        Graph
+                    </Heading>
+                </Card>
+                {/* 下面是用代码画的图 */}
+                
+                {/* 用Json画图 */}
+                {/* <JsonDraw /> */}
+
+                {/* 用HTML画图 */}
+                <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
+                    <iframe src="/bar_chart.html" title="Result" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
+                </div>     
+            </View>
+
+        </View>
+    );
 }
