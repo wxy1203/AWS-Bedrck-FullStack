@@ -7,12 +7,11 @@ import {  Flex, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
-import { writeFileSync } from 'fs';
 
 
 function EnterUserSection () {
     const { tokens } = useTheme();
-
+    // 用户You
     return <View padding={10} width="100%" backgroundColor={tokens.colors.brand.primary[10]}>
      <Text textTransform='capitalize' textAlign='center'>        
             You
@@ -22,14 +21,15 @@ function EnterUserSection () {
 
 function EnterAgentSection (props: {name?: string}) {
     const { tokens } = useTheme();
-
+    // 机器人Bot
     return <View padding={10} width="100%" backgroundColor={tokens.colors.brand.primary[10]}>
         <Text textTransform='capitalize' textAlign='center'>        
-            {props.name}
+            {props.name} 
         </Text>
     </View>
 }
 
+// 所有render的消息都会在这里显示
 export function ChatRendered () {
 
     const {chatId} = useParams()
@@ -67,6 +67,7 @@ export function ChatRendered () {
 
             if (event.event.message) {
                 renderedChat.push(
+                    // 用户消息
                     <UserChatMessage
                         text={event.event.message}
                         event={event}
@@ -78,6 +79,7 @@ export function ChatRendered () {
 
             if (event.event.actionResult) {
                 renderedChat.push(
+                    // Query结果
                     <GraphQLResultBlock 
                         text={event.event.actionResult} 
                         event={event} 
@@ -96,13 +98,15 @@ export function ChatRendered () {
             }
 
             if (event.event.message) {
-                // split on ``` for rendering blobs
                 // console.log(event.event.message)
+
+                // split on ``` for rendering blobs
                 let parts = event.event.message.split('```')             
                 let localLastEffectTime = lastEffectEndTime
                 parts.forEach((part: string, index: number) => {
                     if (index % 2 === 0) {
                         renderedChat.push(
+                            // 用户消息
                             <AgentChatMessage 
                                 text={part}
                                 event={event} 
@@ -115,16 +119,9 @@ export function ChatRendered () {
                         messageSize += part.length
                     }
                     else {
-                        //writeFileSync('props_text.html', part)
+                        // writeFileSync('props_text.html', part) 不可以直接写入html文件
+                        
                         console.log(part)
-
-                        // fetch('/save-data', {
-                        //     method: 'POST',
-                        //     headers: {
-                        //       'Content-Type': 'application/json',
-                        //     },
-                        //     body: JSON.stringify({ data: part }),
-                        // })
 
                         renderedChat.push(
 
