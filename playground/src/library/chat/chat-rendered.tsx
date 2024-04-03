@@ -122,7 +122,6 @@ export function ChatRendered () {
                         // writeFileSync('props_text.html', part) 不可以直接写入html文件
                         
                         // console.log(part)
-
                         renderedChat.push(
 
                             <AgentJSONBlock 
