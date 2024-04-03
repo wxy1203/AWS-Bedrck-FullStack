@@ -7,6 +7,7 @@ import {  Card, Flex, Heading, Loader, Text, View, useTheme } from "@aws-amplify
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, DrawGraphBlock, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
+import Chart, { ChartConfiguration } from 'chart.js/auto'; 
 
 
 function EnterUserSection () {
@@ -132,7 +133,7 @@ export function ChatRendered () {
                     else {
                         // writeFileSync('props_text.html', part) 不可以直接写入html文件
 
-                        // console.log(part)
+                        console.log(part)
 
                         partItem = part
                         const chartConfig = part.replace(/^\w+\s/, '');
@@ -236,6 +237,7 @@ export function ChatRendered () {
                 
                 {/* 用Json画图 */}
                 {/* <JsonDraw /> */}
+                <JsonDraw part={partItem} />
 
                 
             </View>
@@ -245,4 +247,30 @@ export function ChatRendered () {
     )
 
 
+}
+
+function JsonDraw({ part }: { part: string })  {
+    
+    const canvasRef = useRef(null);
+    const [chartInstance, setChartInstance] = useState<Chart | null>(null);
+    const chartCanvasRef = useRef<HTMLCanvasElement>(null);
+
+    useEffect(() => {
+        if (chartInstance) {
+            // Destroy previous chart instance if exists
+            chartInstance.destroy();
+          }
+        if (canvasRef.current) {
+            const chartConfig = part.match(/\{.*\}/s);
+            console.log(chartConfig)
+          
+            const chart: ChartConfiguration = eval(`(${chartConfig})`);
+            // Generate new chart using parsed chart configuration
+            const newChartInstance = new Chart(canvasRef.current, chart);
+
+            setChartInstance(newChartInstance);
+        }
+    }, []);
+
+    return <canvas ref={canvasRef} />;
 }
