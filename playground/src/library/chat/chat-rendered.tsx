@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 //@ts-ignore
 import Prism from 'prismjs';
 import { useAgentApiAgent, useAgentApiConversationWithMessages, useAgentApiInvokeQuery } from "../../apis/agent-api";
-import {  Flex, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
+import {  Card, Flex, Heading, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
 import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
@@ -29,6 +29,10 @@ function EnterAgentSection (props: {name?: string}) {
     </View>
 }
 
+function getPartItem (part: string) {
+    return part
+}
+
 // 所有render的消息都会在这里显示
 export function ChatRendered () {
 
@@ -44,9 +48,8 @@ export function ChatRendered () {
     useEffect(() => chatBottomRef.current?.scrollIntoView(), [events, conversationMetadata])
 
 
-    const [exportedText, setExportedText] = useState<string>(''); // State to store exported text
-    const [partsText, setPartsText] = useState<string>(''); // State to store parts text
-    
+    let partItem = '';
+
     if (agentObject.isUnloaded() || !agentObject.value || loadingConversation) {
         return <Loader/>
     }
@@ -131,7 +134,8 @@ export function ChatRendered () {
 
                         // console.log(part)
 
-                        setPartsText(part)
+                        partItem = part
+                   
 
                         renderedChat.push(
 
@@ -141,6 +145,10 @@ export function ChatRendered () {
                                 lastEventTime={localLastEffectTime}
                                 key={event.id + index}
                             />
+                        )
+
+                        renderedChat.push(
+                            partItem
                         )
                     }
                 })
@@ -195,13 +203,6 @@ export function ChatRendered () {
         )
     }
 
-    // Function to export text
-    const exportText = () => {
-        if (partsText) {
-            setExportedText(partsText);
-            console.log("Exported text:", partsText);
-        }
-    }
 
     return (
         <View style={{height: 'calc(100vh - 230px)', overflowY: 'scroll'}}>
@@ -217,9 +218,26 @@ export function ChatRendered () {
                 </Flex>
             </View>
 
-            <button onClick={exportText}>Export Text</button>
+            hahahah 
+            {partItem}
+
+            <View>
+                <Card paddingLeft={10} className="codeBoxHeader">
+                    <Heading>
+                        Graph
+                    </Heading>
+                </Card>
+                {/* 下面是用代码画的图 */}
+                
+                {/* 用Json画图 */}
+                {/* <JsonDraw /> */}
+
+                
+            </View>
+
 
         </View>
     )
+
 
 }
