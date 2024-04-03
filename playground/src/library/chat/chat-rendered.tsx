@@ -101,7 +101,8 @@ export function ChatRendered () {
                 // console.log(event.event.message)
 
                 // split on ``` for rendering blobs
-                let parts = event.event.message.split('```')             
+                let parts = event.event.message.split('```')   
+                      
                 let localLastEffectTime = lastEffectEndTime
                 parts.forEach((part: string, index: number) => {
                     if (index % 2 === 0) {
@@ -121,7 +122,7 @@ export function ChatRendered () {
                     else {
                         // writeFileSync('props_text.html', part) 不可以直接写入html文件
                         
-                        console.log(part)
+                        // console.log(part)
 
                         renderedChat.push(
 
