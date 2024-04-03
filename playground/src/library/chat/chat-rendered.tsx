@@ -101,8 +101,7 @@ export function ChatRendered () {
                 // console.log(event.event.message)
 
                 // split on ``` for rendering blobs
-                let parts = event.event.message.split('```')   
-                      
+                let parts = event.event.message.split('```')         
                 let localLastEffectTime = lastEffectEndTime
                 parts.forEach((part: string, index: number) => {
                     if (index % 2 === 0) {
