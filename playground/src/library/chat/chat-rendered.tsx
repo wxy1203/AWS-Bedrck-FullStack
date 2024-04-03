@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from "react"
+import { ReactNode, useEffect, useRef, useState } from "react"
 import { useParams } from "react-router-dom"
 //@ts-ignore
 import Prism from 'prismjs';
@@ -46,6 +46,11 @@ export function ChatRendered () {
     if (agentObject.isUnloaded() || !agentObject.value || loadingConversation) {
         return <Loader/>
     }
+
+
+    const [exportedText, setExportedText] = useState<string>(''); // State to store exported text
+    const [partsText, setPartsText] = useState<string>(''); // State to store parts text
+
 
     let lastSection = ''
     let renderedChat: ReactNode[] = []
@@ -123,6 +128,9 @@ export function ChatRendered () {
                         // writeFileSync('props_text.html', part) 不可以直接写入html文件
 
                         // console.log(part)
+
+                        setPartsText(part)
+                        
                         renderedChat.push(
 
                             <AgentJSONBlock 
