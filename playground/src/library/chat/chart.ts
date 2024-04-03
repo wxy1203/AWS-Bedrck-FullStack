@@ -25,30 +25,5 @@ export function createBarChart(canvas: HTMLCanvasElement) {
   const labels = data.terminals.map((terminal) => terminal.terminal);
   const flightsData = data.terminals.map((terminal) => terminal.flights);
 
-  return new Chart(canvas, { 
-    type: 'bar', 
-    data: { 
-      labels: ['Terminal 1', 'Terminal 2', 'Terminal 3', 'Terminal 4'], 
-      datasets: [{ 
-        label: 'Flights per Terminal', 
-        data: [27, 20, 33, 12], 
-        backgroundColor: [ 
-          'rgba(255, 99, 132, 0.2)', 
-          'rgba(54, 162, 235, 0.2)', 
-          'rgba(255, 206, 86, 0.2)', 
-          'rgba(75, 192, 192, 0.2)' 
-        ], 
-        borderColor: [ 
-          'rgba(255, 99, 132, 1)', 
-          'rgba(54, 162, 235, 1)', 
-          'rgba(255, 206, 86, 1)', 
-          'rgba(75, 192, 192, 1)' 
-        ], 
-        borderWidth: 1 
-      }] 
-    }, 
-    options: { 
-      
-    } 
-  });
+  return new Chart(canvas, { type: 'bar', data: { labels: ['Terminal 1', 'Terminal 2', 'Terminal 3', 'Terminal 4'], datasets: [{ label: 'Flights per Terminal', data: [27, 20, 33, 12], backgroundColor: 'rgba(255, 99, 132, 0.2)', borderColor: 'rgba(75, 192, 192, 1)', borderWidth: 1 }] }, options: { scales: { y: { beginAtZero: true } } } });
 }
