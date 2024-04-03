@@ -43,13 +43,15 @@ export function ChatRendered () {
     setTimeout(() => Prism.highlightAll(), 100);
     useEffect(() => chatBottomRef.current?.scrollIntoView(), [events, conversationMetadata])
 
+
+    const [exportedText, setExportedText] = useState<string>(''); // State to store exported text
+    const [partsText, setPartsText] = useState<string>(''); // State to store parts text
+    
     if (agentObject.isUnloaded() || !agentObject.value || loadingConversation) {
         return <Loader/>
     }
 
 
-    const [exportedText, setExportedText] = useState<string>(''); // State to store exported text
-    const [partsText, setPartsText] = useState<string>(''); // State to store parts text
 
 
     let lastSection = ''
@@ -130,7 +132,7 @@ export function ChatRendered () {
                         // console.log(part)
 
                         setPartsText(part)
-                        
+
                         renderedChat.push(
 
                             <AgentJSONBlock 
@@ -193,6 +195,14 @@ export function ChatRendered () {
         )
     }
 
+    // Function to export text
+    const exportText = () => {
+        if (partsText) {
+            setExportedText(partsText);
+            console.log("Exported text:", partsText);
+        }
+    }
+
     return (
         <View style={{height: 'calc(100vh - 230px)', overflowY: 'scroll'}}>
             <View>
@@ -206,6 +216,9 @@ export function ChatRendered () {
                     <div ref={chatBottomRef}/>
                 </Flex>
             </View>
+
+            <button onClick={exportText}>Export Text</button>
+
         </View>
     )
 
