@@ -135,7 +135,7 @@ export function ChatRendered () {
                         // console.log(part)
 
                         partItem = part
-                   
+                        const chartConfig = part.replace(/^\w+\s/, '');
 
                         renderedChat.push(
 
@@ -149,7 +149,7 @@ export function ChatRendered () {
 
                         renderedChat.push(
                             <DrawGraphBlock
-                                text={part}
+                                text={chartConfig}
                                 event={event}
                                 lastEventTime={localLastEffectTime}
                                 key={event.id + index}
@@ -223,8 +223,8 @@ export function ChatRendered () {
                 </Flex>
             </View>
 
-            hahahah 
-            {partItem}
+            {/* hahahah 
+            {partItem} */}
 
             <View>
                 <Card paddingLeft={10} className="codeBoxHeader">
