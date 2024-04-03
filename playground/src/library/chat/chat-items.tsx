@@ -2,7 +2,8 @@ import { View, Card, Alert, Text, useTheme, Flex, Heading, Button } from "@aws-a
 import { ConversationEvent } from "../../apis/agent-api/types"
 import { TypingEffect } from "../typeEffect"
 import { createBarChart } from './chart'
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import Chart, { ChartConfiguration } from 'chart.js/auto'; // Import Chart.js library
 
 interface ChatItemProps {
     text: string
@@ -148,12 +149,6 @@ export function GraphQLResultBlock (props: ChatItemProps) {
                 <Heading>
                     Query Result
                 </Heading>
-                {/* 下面是draw button */}
-                {/* <Heading>
-                    <Button className="invokeButton">
-                        Click To Draw Chart
-                    </Button>
-                </Heading> */}
             </Card>
             <pre >
                 <code>
@@ -166,20 +161,7 @@ export function GraphQLResultBlock (props: ChatItemProps) {
     </View>
 }
 
-// 用Json画图
-function JsonDraw() {
-    
-    const canvasRef = useRef(null);
 
-    useEffect(() => {
-        if (canvasRef.current) {
-        createBarChart(canvasRef.current);
-        // Save the chart instance if you need to use it later
-        }
-    }, []);
-
-    return <canvas ref={canvasRef} />;
-}
 
 // 代码 和 代码执行结果
 export function AgentJSONBlock (props: ChatItemProps) {
@@ -234,13 +216,29 @@ export function DrawGraphBlock (props: ChatItemProps) {
                     <Heading>
                         Graph
                     </Heading>
-                huahua
                 
-                {props.text}
+                
+                {/* {props.text} */}
                 {/* 下面是用代码画的图 */}
+                
                 <JsonDraw />
+
                 </Card>
             </View>
         </View>
     );
+}
+
+function JsonDraw() {
+    
+    const canvasRef = useRef(null);
+
+    useEffect(() => {
+        if (canvasRef.current) {
+        createBarChart(canvasRef.current);
+        // Save the chart instance if you need to use it later
+        }
+    }, []);
+
+    return <canvas ref={canvasRef} />;
 }
