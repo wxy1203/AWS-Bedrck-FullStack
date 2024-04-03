@@ -206,20 +206,20 @@ export function AgentJSONBlock (props: ChatItemProps) {
             </View>
 
             <View>
-                <Card paddingLeft={10} className="codeBoxHeader">
+                {/* <Card paddingLeft={10} className="codeBoxHeader">
                     <Heading>
                         Graph
                     </Heading>
-                </Card>
+                </Card> */}
                 {/* 下面是用代码画的图 */}
                 
                 {/* 用Json画图 */}
                 {/* <JsonDraw /> */}
 
                 {/* 用HTML画图 */}
-                <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
+                {/* <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
                     <iframe src="/bar_chart.html" title="Result" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
-                </div>     
+                </div>      */}
             </View>
 
         </View>
