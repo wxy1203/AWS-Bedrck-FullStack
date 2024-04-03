@@ -232,8 +232,13 @@ export function DrawGraphBlock (props: ChatItemProps) {
 function JsonDraw() {
     
     const canvasRef = useRef(null);
+    const [chartInstance, setChartInstance] = useState<Chart | null>(null);
 
     useEffect(() => {
+        if (chartInstance) {
+            // Destroy previous chart instance if exists
+            chartInstance.destroy();
+          }
         if (canvasRef.current) {
         createBarChart(canvasRef.current);
         // Save the chart instance if you need to use it later
