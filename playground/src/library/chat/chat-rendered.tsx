@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import Prism from 'prismjs';
 import { useAgentApiAgent, useAgentApiConversationWithMessages, useAgentApiInvokeQuery } from "../../apis/agent-api";
 import {  Card, Flex, Heading, Loader, Text, View, useTheme } from "@aws-amplify/ui-react";
-import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, GraphQLResultBlock, UserChatMessage } from "./chat-items";
+import { AgentChatMessage, AgentGraphQLBlock, AgentInnerDialogBlock, AgentJSONBlock, AgentPartialChatMessage, DrawGraphBlock, GraphQLResultBlock, UserChatMessage } from "./chat-items";
 import reactUseCookie from "react-use-cookie";
 import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMetadata";
 
@@ -148,7 +148,12 @@ export function ChatRendered () {
                         )
 
                         renderedChat.push(
-                            partItem
+                            <DrawGraphBlock
+                                text={part}
+                                event={event}
+                                lastEventTime={localLastEffectTime}
+                                key={event.id + index}
+                            />
                         )
                     }
                 })
