@@ -10,6 +10,8 @@ import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMeta
 import Chart, { ChartConfiguration } from 'chart.js/auto'; 
 
 
+const data = '';
+
 function EnterUserSection () {
     const { tokens } = useTheme();
     // 用户You
