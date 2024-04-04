@@ -212,6 +212,7 @@ export function DrawGraphBlock (props: ChatItemProps) {
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
             <View lineHeight={2}>
+                {/* boolean to show */}
                 <Card paddingLeft={10} className="codeBoxHeader">
                     <Heading>
                         Graph
