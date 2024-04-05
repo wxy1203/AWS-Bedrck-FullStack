@@ -150,6 +150,7 @@ export function ChatRendered () {
                             />
                         )
 
+                        // 代码结束，开始画图
                         renderedChat.push(
                             <DrawGraphBlock
                                 text={chartConfig}
