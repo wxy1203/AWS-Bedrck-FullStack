@@ -12,7 +12,7 @@ import Chart, { ChartConfiguration } from 'chart.js/auto';
 
 function EnterUserSection () {
     const { tokens } = useTheme();
-    // 用户You
+    // 用户 You
     return <View padding={10} width="100%" backgroundColor={tokens.colors.brand.primary[10]}>
      <Text textTransform='capitalize' textAlign='center'>        
             You
