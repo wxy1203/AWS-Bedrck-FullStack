@@ -10,8 +10,6 @@ import { useAgentConversationMetadata } from "../../apis/agent-api/hooks/useMeta
 import Chart, { ChartConfiguration } from 'chart.js/auto'; 
 
 
-const data = '';
-
 function EnterUserSection () {
     const { tokens } = useTheme();
     // 用户You
@@ -152,12 +150,13 @@ export function ChatRendered () {
 
                         // 代码结束，开始画图
                         renderedChat.push(
-                            <DrawGraphBlock
-                                text={chartConfig}
-                                event={event}
-                                lastEventTime={localLastEffectTime}
-                                key={event.id + index}
-                            />
+                            // <DrawGraphBlock
+                            //     text={chartConfig}
+                            //     event={event}
+                            //     lastEventTime={localLastEffectTime}
+                            //     key={event.id + index}
+                            // />
+                            <JsonDraw part={partItem} />
                         )
                     }
                 })
