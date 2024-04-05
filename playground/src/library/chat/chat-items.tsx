@@ -77,7 +77,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 export function AgentWarningBlock (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>   
-        {/* 我是agent warning    */}
+        {/* 我是agent warning */}
             <Alert variation='warning' fontSize='smaller'>
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>
             </Alert>
@@ -85,6 +85,7 @@ export function AgentWarningBlock (props: ChatItemProps) {
     </View>
 }
 
+// take string render, parse and reformat it into JSON string
 function tryFixJsonString (render: string){
 
     // Some general parsing as the agent often gives results in wildly different formats
