@@ -22,7 +22,7 @@ function EnterUserSection () {
 
 function EnterAgentSection (props: {name?: string}) {
     const { tokens } = useTheme();
-    // 机器人Bot
+    // 机器人 Bot
     return <View padding={10} width="100%" backgroundColor={tokens.colors.brand.primary[10]}>
         <Text textTransform='capitalize' textAlign='center'>        
             {props.name} 
@@ -30,9 +30,6 @@ function EnterAgentSection (props: {name?: string}) {
     </View>
 }
 
-function getPartItem (part: string) {
-    return part
-}
 
 // 所有render的消息都会在这里显示
 export function ChatRendered () {
@@ -44,19 +41,16 @@ export function ChatRendered () {
     const agentObject = useAgentApiAgent(conversation?.agent)
     const [apiKey] = reactUseCookie(agentObject.value?.actions[0]?.id||'')
     const chatBottomRef = useRef<HTMLDivElement>(null)
+    
     const chatInvokeQuery = useAgentApiInvokeQuery(chatId)
-    setTimeout(() => Prism.highlightAll(), 100);
+    let partItem = ''
+    
+    setTimeout(() => Prism.highlightAll(), 100)
     useEffect(() => chatBottomRef.current?.scrollIntoView(), [events, conversationMetadata])
-
-
-    let partItem = '';
 
     if (agentObject.isUnloaded() || !agentObject.value || loadingConversation) {
         return <Loader/>
     }
-
-
-
 
     let lastSection = ''
     let renderedChat: ReactNode[] = []
@@ -150,13 +144,12 @@ export function ChatRendered () {
 
                         // 代码结束，开始画图
                         renderedChat.push(
-                            // <DrawGraphBlock
-                            //     text={chartConfig}
-                            //     event={event}
-                            //     lastEventTime={localLastEffectTime}
-                            //     key={event.id + index}
-                            // />
-                            <JsonDraw part={partItem} />
+                            <DrawGraphBlock
+                                text={part}
+                                event={event}
+                                lastEventTime={localLastEffectTime}
+                                key={event.id + index}
+                            />
                         )
                     }
                 })
@@ -226,20 +219,20 @@ export function ChatRendered () {
                 </Flex>
             </View>
 
-            {/* hahahah 
+            {/* partitem内容
             {partItem} */}
 
             <View>
-                <Card paddingLeft={10} className="codeBoxHeader">
+                {/* <Card paddingLeft={10} className="codeBoxHeader">
                     <Heading>
                         Graph
                     </Heading>
-                </Card>
+                </Card> */}
                 {/* 下面是用代码画的图 */}
                 
                 {/* 用Json画图 */}
                 {/* <JsonDraw /> */}
-                <JsonDraw part={partItem} />
+                {/* <JsonDraw part={partItem} /> */}
 
                 
             </View>
