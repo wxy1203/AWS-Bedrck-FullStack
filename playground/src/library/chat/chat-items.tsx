@@ -26,6 +26,7 @@ export function UserChatError (props: ChatItemProps) {
     return <View paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
             <Alert variation="error" fontSize='smaller'>
+                {/* 用户错误消息 */}
                 {props.text}
             </Alert>
         </Card>
@@ -53,8 +54,7 @@ export function AgentPartialChatMessage (props: {text: string}) {
         {/* 我是agent partial chat */}
         <View lineHeight={2}>
             <Text>
-                {props.text}
-                
+                {props.text}   
             </Text>
         </View>
     </View>
@@ -113,7 +113,7 @@ function tryFixJsonString (render: string){
 export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
     
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-    下面是Query
+    {/* 下面是Query */}
         <View lineHeight={2}>
             <Card paddingLeft={10} className="codeBoxHeader">
                 <Flex direction='row' justifyContent='space-between'>
@@ -210,31 +210,39 @@ export function AgentJSONBlock (props: ChatItemProps) {
 }
 
 export function DrawGraphBlock (props: ChatItemProps) {
+
+
+
+    const firstWord = props.text.split('\n')[0];
+
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
             <View lineHeight={2}>
-                {/* boolean to show */}
+
+                {firstWord.toLowerCase() === 'js' && (
                 <Card paddingLeft={10} className="codeBoxHeader">
                     <Heading>
-                        Graph
+                    Graph
                     </Heading>
-                
-                
-                {/* {props.text} */}
-                {/* 下面是用代码画的图 */}
-                
-                <JsonDraw />
-
                 </Card>
+                )}
+
+                {firstWord.toLowerCase() === 'js' ? (
+                <JsonDraw part={props.text} />
+                ) : (
+                <Text>No Graph, can only draw graph for js new Chart code provided</Text>
+                )}
+                
             </View>
         </View>
     );
 }
 
-function JsonDraw() {
+function JsonDraw({ part }: { part: string })  {
     
     const canvasRef = useRef(null);
     const [chartInstance, setChartInstance] = useState<Chart | null>(null);
+    const chartCanvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         if (chartInstance) {
@@ -242,8 +250,22 @@ function JsonDraw() {
             chartInstance.destroy();
           }
         if (canvasRef.current) {
-        createBarChart(canvasRef.current);
-        // Save the chart instance if you need to use it later
+            // console.log(part)
+            const firstWord = part.split("\n")[0];
+            // console.log(firstWord)
+            if (firstWord === "js") {
+                // console.log("有new chart")
+                const chartConfig = part.match(/\{.*\}/s);
+
+                const chart: ChartConfiguration = eval(`(${chartConfig})`);
+                // Generate new chart using parsed chart configuration
+                const newChartInstance = new Chart(canvasRef.current, chart);
+
+                setChartInstance(newChartInstance);
+            }
+
+
+            
         }
     }, []);
 
