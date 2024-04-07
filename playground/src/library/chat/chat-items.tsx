@@ -271,4 +271,3 @@ function JsonDraw({ part }: { part: string })  {
 
     return <canvas ref={canvasRef} />;
 }
-
