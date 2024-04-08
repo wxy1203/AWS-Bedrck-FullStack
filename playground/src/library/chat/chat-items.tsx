@@ -143,7 +143,7 @@ export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) 
 // Graph Query Result
 export function GraphQLResultBlock (props: ChatItemProps) {    
     return <View textAlign='left' paddingLeft={20} paddingRight={20}> 
-    {/* 下面是query result */}
+    {/* query result */}
         <View lineHeight={2}>
             <Card paddingLeft={10} className="codeBoxHeader">
                 <Heading>
