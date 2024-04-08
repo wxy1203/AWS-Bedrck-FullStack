@@ -35,7 +35,7 @@ export function UserChatError (props: ChatItemProps) {
 export function AgentChatMessage (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>
-            {/* 我是agent chat */}
+            {/* agent chat */}
             <Text>
                 {
                     props.event.disableTyping && props.text
