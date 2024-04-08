@@ -112,7 +112,7 @@ function tryFixJsonString (render: string){
 export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
     
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-    {/* 下面是Query */}
+    {/* Query */}
         <View lineHeight={2}>
             <Card paddingLeft={10} className="codeBoxHeader">
                 <Flex direction='row' justifyContent='space-between'>
