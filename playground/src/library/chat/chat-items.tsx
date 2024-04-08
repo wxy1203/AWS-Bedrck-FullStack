@@ -120,7 +120,7 @@ export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) 
                     <Heading>
                         GraphQL Query
                     </Heading>
-                    {/* 下面是invoke button */}
+                    {/* Query result invoke button */}
                     <Heading>
                         <Button className="invokeButton" onClick={props.invoke}>
                             Click To Invoke
