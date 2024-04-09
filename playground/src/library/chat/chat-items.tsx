@@ -25,7 +25,7 @@ export function UserChatError (props: ChatItemProps) {
     return <View paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
             <Alert variation="error" fontSize='smaller'>
-                {/* UserChatError */}
+                {/* User Chat Error */}
                 {props.text}
             </Alert>
         </Card>
