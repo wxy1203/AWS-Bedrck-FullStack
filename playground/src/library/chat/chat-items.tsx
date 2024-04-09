@@ -112,7 +112,7 @@ function tryFixJsonString (render: string){
 export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) {
     
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-    {/* Graph QL */}
+    {/* GraphQL */}
         <View lineHeight={2}>
             <Card paddingLeft={10} className="codeBoxHeader">
                 <Flex direction='row' justifyContent='space-between'>
@@ -121,11 +121,11 @@ export function AgentGraphQLBlock (props: {invoke: () => void} & ChatItemProps) 
                         GraphQL Query
                     </Heading>
                     {/* Query result invoke button */}
-                    <Heading>
+                    {/* <Heading>
                         <Button className="invokeButton" onClick={props.invoke}>
                             Click To Invoke
                         </Button>
-                    </Heading>
+                    </Heading> */}
                 </Flex>
             </Card>
             <pre>
