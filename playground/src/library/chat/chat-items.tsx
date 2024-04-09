@@ -173,11 +173,11 @@ export function AgentJSONBlock (props: ChatItemProps) {
                         Code
                     </Heading>
                     {/* 下面是draw button */}
-                    <Heading>
+                    {/* <Heading>
                         <Button className="invokeButton">
                             Click To Draw Chart
                         </Button>
-                    </Heading>
+                    </Heading> */}
                 </Card>
                 
                 {/* 下面是代码 */}
