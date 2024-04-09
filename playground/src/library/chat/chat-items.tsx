@@ -76,7 +76,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 export function AgentWarningBlock (props: ChatItemProps) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2}>   
-        {/* agent warning */}
+        {/* Agent Warning */}
             <Alert variation='warning' fontSize='smaller'>
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>
             </Alert>
