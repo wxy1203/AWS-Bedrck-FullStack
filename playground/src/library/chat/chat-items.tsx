@@ -14,7 +14,7 @@ export function UserChatMessage (props: ChatItemProps) {
     return <View textAlign='right' paddingLeft={20} paddingRight={20}>
         <Card lineHeight={2}>
             <Text>
-                {/* 用户消息 */}
+                {/* User Chat Message */}
                 {props.text}
             </Text>
         </Card>
@@ -160,7 +160,6 @@ export function GraphQLResultBlock (props: ChatItemProps) {
         </View>
     </View>
 }
-
 
 
 // 代码 和 代码执行结果
