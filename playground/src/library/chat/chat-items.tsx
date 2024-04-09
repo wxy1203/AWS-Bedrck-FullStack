@@ -188,14 +188,14 @@ export function AgentJSONBlock (props: ChatItemProps) {
 
             <View>
     
-                {/* 用Json画图 */}
+                {/* JSON Drawing */}
                 {/* <JsonDraw /> */}
 
                 {/* HTML Drawing */}
                 {/* <div style={{ position: 'relative', height: 0, paddingBottom: '56.25%' }}>
                     <iframe src="/bar_chart.html" title="Result" style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }} />
                 </div>      */}
-                
+
             </View>
 
         </View>
