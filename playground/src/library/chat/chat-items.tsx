@@ -162,7 +162,7 @@ export function GraphQLResultBlock (props: ChatItemProps) {
 }
 
 
-// 代码 和 代码执行结果
+// Code Block
 export function AgentJSONBlock (props: ChatItemProps) {
     return (
         <View textAlign='left' paddingLeft={20} paddingRight={20}>
