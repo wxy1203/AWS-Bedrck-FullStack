@@ -50,7 +50,7 @@ export function AgentChatMessage (props: ChatItemProps) {
 
 export function AgentPartialChatMessage (props: {text: string}) {
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
-        {/* agent partial chat */}
+        {/* Agent Partial Chat Message */}
         <View lineHeight={2}>
             <Text>
                 {props.text}   
