@@ -172,7 +172,7 @@ export function AgentJSONBlock (props: ChatItemProps) {
                     <Heading>
                         Code
                     </Heading>
-                    {/* 下面是draw button */}
+                    {/* Drawing Button */}
                     {/* <Heading>
                         <Button className="invokeButton">
                             Click To Draw Chart
