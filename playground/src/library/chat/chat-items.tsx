@@ -180,7 +180,7 @@ export function AgentJSONBlock (props: ChatItemProps) {
                     </Heading> */}
                 </Card>
                 
-                {/* Code */}
+                {/* Code Itself */}
                 <pre><code>
                     {props.text}
                 </code></pre>
