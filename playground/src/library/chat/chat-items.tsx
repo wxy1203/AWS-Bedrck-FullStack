@@ -202,9 +202,8 @@ export function AgentJSONBlock (props: ChatItemProps) {
     );
 }
 
+// Graph Drawing Block
 export function DrawGraphBlock (props: ChatItemProps) {
-
-
 
     const firstWord = props.text.split('\n')[0];
 
@@ -213,17 +212,17 @@ export function DrawGraphBlock (props: ChatItemProps) {
             <View lineHeight={2}>
 
                 {firstWord.toLowerCase() === 'js' && (
-                <Card paddingLeft={10} className="codeBoxHeader">
                     <Heading>
                     Graph
                     </Heading>
-                </Card>
                 )}
 
                 {firstWord.toLowerCase() === 'js' ? (
                 <JsonDraw part={props.text} />
                 ) : (
-                <Text>No Graph, can only draw graph for js new Chart code provided</Text>
+                    <Heading>
+                    No Graph Generated
+                    </Heading>
                 )}
                 
             </View>
@@ -231,8 +230,8 @@ export function DrawGraphBlock (props: ChatItemProps) {
     );
 }
 
+// Use JSON data to draw chart
 function JsonDraw({ part }: { part: string })  {
-    
     const canvasRef = useRef(null);
     const [chartInstance, setChartInstance] = useState<Chart | null>(null);
     const chartCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -247,7 +246,7 @@ function JsonDraw({ part }: { part: string })  {
             const firstWord = part.split("\n")[0];
             // console.log(firstWord)
             if (firstWord === "js") {
-                // console.log("有new chart")
+                // console.log("new chart")
                 const chartConfig = part.match(/\{.*\}/s);
 
                 const chart: ChartConfiguration = eval(`(${chartConfig})`);
@@ -255,10 +254,7 @@ function JsonDraw({ part }: { part: string })  {
                 const newChartInstance = new Chart(canvasRef.current, chart);
 
                 setChartInstance(newChartInstance);
-            }
-
-
-            
+            }  
         }
     }, []);
 
