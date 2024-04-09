@@ -64,7 +64,7 @@ export function AgentInnerDialogBlock (props: ChatItemProps) {
 
     return <View textAlign='left' paddingLeft={20} paddingRight={20}>
         <View lineHeight={2} padding={theme.tokens.space.medium}> 
-        {/* agent inner dialog */}
+        {/* Agent Inner Dialog */}
             <Text>
                 . . .
                 <TypingEffect startTime={props.lastEventTime} text={props.text}/>       
