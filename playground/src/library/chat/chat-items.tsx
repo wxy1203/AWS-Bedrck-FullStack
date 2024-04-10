@@ -232,6 +232,7 @@ export function DrawGraphBlock (props: ChatItemProps) {
 
 // Use JSON data to draw chart
 function JsonDraw({ part }: { part: string })  {
+    
     const canvasRef = useRef(null);
     const [chartInstance, setChartInstance] = useState<Chart | null>(null);
     const chartCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -242,11 +243,11 @@ function JsonDraw({ part }: { part: string })  {
             chartInstance.destroy();
           }
         if (canvasRef.current) {
-            // console.log(part)
+
             const firstWord = part.split("\n")[0];
-            // console.log(firstWord)
+
             if (firstWord === "js") {
-                // console.log("new chart")
+
                 const chartConfig = part.match(/\{.*\}/s);
 
                 const chart: ChartConfiguration = eval(`(${chartConfig})`);
