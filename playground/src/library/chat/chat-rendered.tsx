@@ -103,7 +103,6 @@ export function ChatRendered () {
             }
 
             if (event.event.message) {
-                // console.log(event.event.message)
 
                 // split on ``` for rendering blobs
                 let parts = event.event.message.split('```')  
@@ -125,9 +124,6 @@ export function ChatRendered () {
                         messageSize += part.length
                     }
                     else {
-                        // writeFileSync('props_text.html', part) 不可以直接写入html文件
-
-                        console.log(part)
 
                         partItem = part
                         const chartConfig = part.replace(/^\w+\s/, '');
@@ -257,7 +253,6 @@ function JsonDraw({ part }: { part: string })  {
           }
         if (canvasRef.current) {
             const chartConfig = part.match(/\{.*\}/s);
-            console.log(chartConfig)
           
             const chart: ChartConfiguration = eval(`(${chartConfig})`);
             // Generate new chart using parsed chart configuration
