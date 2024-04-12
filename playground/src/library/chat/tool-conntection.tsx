@@ -18,4 +18,3 @@ export function ConnectedItem (props: ConnectionItem) {
     </Card>
 }
 
-
