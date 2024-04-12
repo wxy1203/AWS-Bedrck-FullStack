@@ -17,5 +17,3 @@ export function ConnectedItem (props: ConnectionItem) {
         </Flex>
     </Card>
 }
-
-
