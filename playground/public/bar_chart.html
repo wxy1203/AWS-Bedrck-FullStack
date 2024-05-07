@@ -8,7 +8,7 @@
   <canvas id="myChart"></canvas>
   
   <script>
-    // here is an example of using Chart.js
+    // here is an example of using Chart.js to draw bar chart on Flight data
     const data = {
       labels: ['Terminal 1', 'Terminal 2', 'Terminal 3', 'Terminal 4'],
       datasets: [{
@@ -23,14 +23,12 @@
       }]  
     };
     
-    // Chart config
     const config = {
       type: 'bar',
       data: data,
       options: {}
     };
-    
-    // Render chart
+  
     const myChart = new Chart(
       document.getElementById('myChart'),
       config
