@@ -258,7 +258,6 @@ function JsonDraw({ part }: { part: string })  {
                 catch (error) {
                     console.error("Error parsing chart configuration:", error);
                 }
-                
             }  
         }
     }, []);
