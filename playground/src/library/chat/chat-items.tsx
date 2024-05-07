@@ -253,7 +253,6 @@ function JsonDraw({ part }: { part: string })  {
 
 
                     const chart: ChartConfiguration = eval(`(${chartConfig})`);
-                    // Generate new chart using parsed chart configuration
                     const newChartInstance = new Chart(canvasRef.current, chart);
     
                     setChartInstance(newChartInstance);
