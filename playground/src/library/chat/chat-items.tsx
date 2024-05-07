@@ -235,7 +235,7 @@ function JsonDraw({ part }: { part: string })  {
     
     const canvasRef = useRef(null);
     const [chartInstance, setChartInstance] = useState<Chart | null>(null);
-    const chartCanvasRef = useRef<HTMLCanvasElement>(null);
+    // const chartCanvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
         if (chartInstance) {
