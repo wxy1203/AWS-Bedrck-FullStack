@@ -247,7 +247,6 @@ function JsonDraw({ part }: { part: string })  {
             const firstWord = part.split("\n")[0];
 
             if (firstWord === "js") {
-
                 try {
                     const chartConfig = part.match(/\{.*\}/s);
                     const chart: ChartConfiguration = eval(`(${chartConfig})`);
