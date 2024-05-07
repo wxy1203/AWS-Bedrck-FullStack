@@ -250,7 +250,6 @@ function JsonDraw({ part }: { part: string })  {
 
                 try {
                     const chartConfig = part.match(/\{.*\}/s);
-
                     const chart: ChartConfiguration = eval(`(${chartConfig})`);
                     const newChartInstance = new Chart(canvasRef.current, chart);
     
