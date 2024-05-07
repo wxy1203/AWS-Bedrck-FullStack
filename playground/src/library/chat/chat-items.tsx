@@ -248,13 +248,20 @@ function JsonDraw({ part }: { part: string })  {
 
             if (firstWord === "js") {
 
-                const chartConfig = part.match(/\{.*\}/s);
+                try {
+                    const chartConfig = part.match(/\{.*\}/s);
 
-                const chart: ChartConfiguration = eval(`(${chartConfig})`);
-                // Generate new chart using parsed chart configuration
-                const newChartInstance = new Chart(canvasRef.current, chart);
 
-                setChartInstance(newChartInstance);
+                    const chart: ChartConfiguration = eval(`(${chartConfig})`);
+                    // Generate new chart using parsed chart configuration
+                    const newChartInstance = new Chart(canvasRef.current, chart);
+    
+                    setChartInstance(newChartInstance);
+                }
+                catch (error) {
+                    console.error("Error parsing chart configuration:", error);
+                }
+                
             }  
         }
     }, []);
