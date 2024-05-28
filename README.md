@@ -30,7 +30,7 @@ Note you need docker running to deploy the lambda functions
 ```
 # Start with infra
 cd cdk-infrastructure
-npm i
+npm install
 
 # Build TS resolvers into JS
 npm run build
